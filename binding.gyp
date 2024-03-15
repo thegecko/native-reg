@@ -23,7 +23,10 @@
           ],
           "ExceptionHandling": 1
         },
-      }
+      },
+      'defines': [
+        'NAPI_VERSION=8'
+      ]
     }
   ]
 }
