@@ -16,21 +16,17 @@ jobs:
     strategy:
       matrix:
         include:
-          - name: win32-x86
+          - name: win32-ia32
             os: windows-2019
             node: x86
-            command: prebuild
+            command: build:ia32
           - name: win32-x64
             os: windows-2019
             node: x64
-            command: prebuild
-          - name: win32-ia32
-            os: windows-2019
-            node: x64
-            command: prebuild --arch ia32
+            command: build:x64
           - name: win32-arm64
             os: windows-2022
-            command: prebuild --arch arm64 --target 20.11.1
+            command: build:arm64
     name: Build ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
     steps:
