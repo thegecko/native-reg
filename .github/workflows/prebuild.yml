@@ -16,9 +16,13 @@ jobs:
     strategy:
       matrix:
         include:
-          - name: win32-ia32
+          - name: win32-x86
             os: windows-2019
             node: x86
+            command: build:x86
+          - name: win32-ia32
+            os: windows-2019
+            node: x64
             command: build:ia32
           - name: win32-x64
             os: windows-2019
