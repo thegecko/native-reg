@@ -32,21 +32,28 @@
     "clean": "rimraf build lib prebuilds",
     "build": "yarn build:js && yarn build:ia32 && yarn build:x64 && yarn build:arm64",
     "build:js": "tsc -p src",
-    "build:ia32": "prebuildify --napi --target node@12.0.0 --arch ia32",
-    "build:x64": "prebuildify --napi --target node@12.0.0 --arch x64",
-    "build:arm64": "cross-env npm_config_dist_url=https://electronjs.org/headers prebuildify --napi --arch arm64 --target node@19.0.8",
-    "test": "mocha --ui tdd"
+    "build:ia32": "prebuildify --napi --strip --arch ia32",
+    "build:x64": "prebuildify --napi --strip --arch x64",
+    "build:arm64": "prebuildify --napi --strip --arch arm64 --target 20.11.1",
+    "test": "mocha --ui tdd",
+    "prepublishOnly": "prebuildify-ci download",
+    "prebuild-download": "prebuildify-ci download"
   },
   "dependencies": {
-    "node-gyp-build": "4"
+    "node-addon-api": "^7.0.0",
+    "node-gyp-build": "^4.5.0"
   },
   "devDependencies": {
-    "@types/node": "12",
-    "cross-env": "7",
+    "@types/node": "^20.11.20",
     "mocha": "9",
-    "node-addon-api": "4",
-    "prebuildify": "4",
+    "prebuildify": "^5.0.1",
+    "prebuildify-ci": "^1.0.5",
     "rimraf": "3",
     "typescript": "~4.4"
+  },
+  "binary": {
+    "napi_versions": [
+      8
+    ]
   }
 }
